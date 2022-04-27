@@ -52,3 +52,4 @@ The app was developed using VS Code. The frameworks/dependencies used are listed
 - `express-validation` - Express middleware to http request validation;
 - `node-localstorage` - NodeJs implementation of the localStorage api, used to persist the api data;
 - `uuid` - Dependency used to generate unique ids and simulate a primary key;
+- `eslint` & `@typescript-eslint` - Lint tool to code standardization;
