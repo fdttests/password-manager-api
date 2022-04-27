@@ -9,6 +9,6 @@ const validation = {
             password: Joi.string().required(),
         }),
     }),
-}
+};
 
 export default validation;

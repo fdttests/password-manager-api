@@ -11,7 +11,7 @@ export default class PasswordCardRepository {
     ) { }
 
     public async get(filter: GetAllPasswordCardFilterModel = {}): Promise<Array<PasswordCard>> {
-        const list = JSON.parse(this.localStorage.getItem(this.storageKey) ?? '[]'); 
+        const list = JSON.parse(this.localStorage.getItem(this.storageKey) ?? '[]');
 
         return list.filter((item: PasswordCard) => {
             if (!filter.term) {
@@ -35,6 +35,7 @@ export default class PasswordCardRepository {
         const list = await this.get();
 
         const index = list.findIndex((item: PasswordCard) => item.id === passwordCard.id);
+
         list[index] = passwordCard;
 
         this.localStorage.setItem(this.storageKey, JSON.stringify(list));

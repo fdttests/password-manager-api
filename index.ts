@@ -22,13 +22,12 @@ app.use(router);
 
 app.use((err: any, req: any, res: any, next: any) => {
     if (err instanceof ValidationError) {
-        return res.status(err.statusCode).json(err)
+        return res.status(err.statusCode).json(err);
     }
 
-    return res.status(500).json(err)
+    return res.status(500).json(err);
 });
-
 
 app.listen(app.get('port'), () => {
     console.log(`Running HTTP API on Port ${app.get('port')}`);
-})
+});

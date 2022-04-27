@@ -12,7 +12,7 @@ const router = express.Router();
 router.get('/', async (request, response) => {
     const action = new GetAllPasswordCardUseCase();
     const cards = await action.execute(request.query);
-    
+
     response.json({
         data: cards
     });
@@ -20,6 +20,7 @@ router.get('/', async (request, response) => {
 
 router.post('/', validate(createPasswordCardFormRequest, {}, {}), async (request, response) => {
     const action = new CreatePasswordCardUseCase();
+
     await action.execute(request.body.data);
 
     response.status(201).send();
@@ -28,7 +29,7 @@ router.post('/', validate(createPasswordCardFormRequest, {}, {}), async (request
 router.put('/:id', validate(updatePasswordCardFormRequest, {}, {}), async (request, response) => {
     const action = new UpdatePasswordCardUseCase();
     const cardData = request.body.data;
-    
+
     cardData.id = request.params.id;
 
     await action.execute(cardData);
@@ -38,9 +39,10 @@ router.put('/:id', validate(updatePasswordCardFormRequest, {}, {}), async (reque
 
 router.delete('/:id', async (request, response) => {
     const action = new DeletePasswordCardByIdUseCase();
+
     await action.execute(request.params.id);
 
     response.status(204).send();
-})
+});
 
 export default router;
