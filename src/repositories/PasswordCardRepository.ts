@@ -18,7 +18,7 @@ export default class PasswordCardRepository {
                 return true;
             }
 
-            return item.username.includes(filter.term);
+            return item.name?.includes(filter.term);
         });
     }
 
