@@ -1,3 +1,4 @@
+import GetAllPasswordCardFilterModel from "../models/GetAllPasswordCardFilterModel";
 import PasswordCardRepository from "../repositories/PasswordCardRepository";
 
 export default class GetAllPasswordCardUseCase {
@@ -5,7 +6,7 @@ export default class GetAllPasswordCardUseCase {
         private passwordCardRepository = new PasswordCardRepository()
     ) { }
     
-    public execute() {
-        return this.passwordCardRepository.get();
+    public execute(filter: GetAllPasswordCardFilterModel) {
+        return this.passwordCardRepository.get(filter);
     }
 }

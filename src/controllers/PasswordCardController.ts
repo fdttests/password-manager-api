@@ -11,8 +11,8 @@ const router = express.Router();
 
 router.get('/', async (request, response) => {
     const action = new GetAllPasswordCardUseCase();
-    const cards = await action.execute();
-
+    const cards = await action.execute(request.query);
+    
     response.json({
         data: cards
     });

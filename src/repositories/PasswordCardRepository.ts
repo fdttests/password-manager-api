@@ -1,6 +1,7 @@
 import { LocalStorage } from 'node-localstorage';
 import PasswordCard from "../models/PasswordCard";
 import { v4 as uuidv4 } from 'uuid';
+import GetAllPasswordCardFilterModel from '../models/GetAllPasswordCardFilterModel';
 
 export default class PasswordCardRepository {
     private storageKey = 'PasswordCards';
@@ -9,8 +10,16 @@ export default class PasswordCardRepository {
         private localStorage = new LocalStorage('./storage')
     ) { }
 
-    public async get(): Promise<Array<PasswordCard>> {
-        return JSON.parse(this.localStorage.getItem(this.storageKey) ?? '[]');
+    public async get(filter: GetAllPasswordCardFilterModel = {}): Promise<Array<PasswordCard>> {
+        const list = JSON.parse(this.localStorage.getItem(this.storageKey) ?? '[]'); 
+
+        return list.filter((item: PasswordCard) => {
+            if (!filter.term) {
+                return true;
+            }
+
+            return item.username.includes(filter.term);
+        });
     }
 
     public async store(passwordCard: PasswordCard): Promise<void> {
